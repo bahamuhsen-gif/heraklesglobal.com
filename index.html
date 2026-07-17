@@ -23,6 +23,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:clip}
 body{background:var(--bg);color:var(--txt);font-family:'Archivo',system-ui,sans-serif;font-weight:340;font-variation-settings:'wdth' 100;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:rgba(143,174,232,.28)}
 img{max-width:100%;display:block}
@@ -35,7 +36,7 @@ a{color:inherit;text-decoration:none}
 /* ---------- layout ---------- */
 .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
 section{position:relative;padding:110px 0}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--glow);display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--glow);display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:26px;max-width:100%}
 .eyebrow::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--glow),transparent);flex:none}
 .eyebrow .node{width:5px;height:5px;border-radius:50%;background:var(--glow);box-shadow:0 0 8px var(--glow);flex:none;margin-left:-14px}
 h1,h2,h3{font-weight:560;letter-spacing:-.02em;line-height:1.08}
@@ -56,8 +57,8 @@ h3{font-size:20px;font-weight:520}
 /* ---------- nav ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:90;transition:.35s;border-bottom:1px solid transparent}
 nav.scrolled{background:rgba(4,7,13,.82);backdrop-filter:blur(16px);border-bottom-color:var(--line-soft)}
-.nav-in{max-width:1240px;margin:0 auto;padding:0 28px;height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.nav-logo img{height:44px;width:auto}
+.nav-in{max-width:1240px;margin:0 auto;padding:0 28px;height:112px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo img{height:84px;width:auto}
 .nav-links{display:flex;gap:34px;align-items:center}
 .nav-links a{font-size:14.5px;color:var(--muted);letter-spacing:.02em;transition:.2s;position:relative;padding:6px 0}
 .nav-links a:hover,.nav-links a.active{color:var(--txt)}
@@ -65,12 +66,12 @@ nav.scrolled{background:rgba(4,7,13,.82);backdrop-filter:blur(16px);border-botto
 .nav-cta{padding:11px 24px;font-size:14px}
 .burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
 .burger span{width:18px;height:1.6px;background:var(--txt);transition:.3s}
-.mobile-menu{display:none;position:fixed;inset:78px 0 0 0;background:rgba(4,7,13,.97);backdrop-filter:blur(20px);z-index:89;padding:34px 28px;flex-direction:column;gap:8px}
+.mobile-menu{display:none;position:fixed;inset:var(--navh,112px) 0 0 0;background:rgba(4,7,13,.97);backdrop-filter:blur(20px);z-index:89;padding:34px 28px;flex-direction:column;gap:8px}
 .mobile-menu a{font-size:22px;font-weight:480;padding:14px 0;border-bottom:1px solid var(--line-soft);color:var(--txt)}
 .mobile-menu.open{display:flex}
 
 /* ---------- hero ---------- */
-.hero{min-height:100vh;display:flex;align-items:center;padding:150px 0 90px;overflow:hidden}
+.hero{min-height:100svh;display:flex;align-items:center;padding:140px 0 80px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none}
 .hero-glow{position:absolute;width:900px;height:900px;left:50%;top:36%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(143,174,232,.10),transparent 62%);filter:blur(10px)}
 .hero h1{font-size:clamp(44px,7.3vw,102px);font-variation-settings:'wdth' 108;margin:0 0 30px}
@@ -145,11 +146,12 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .success .ok-ring{width:64px;height:64px;border-radius:50%;border:1.4px solid var(--glow);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 0 30px rgba(143,174,232,.3)}
 .success h3{margin-bottom:10px}
 .success p{color:var(--muted)}
+.form-err{display:none;margin-top:14px;padding:13px 16px;border:1px solid rgba(232,143,143,.4);border-radius:10px;color:#E8AFAF;font-size:13.5px}
 
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line-soft);background:var(--bg2);padding:70px 0 34px}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:44px;margin-bottom:54px}
-.foot-grid img{height:52px;width:auto;margin-bottom:18px}
+.foot-grid img{height:120px;width:auto;margin-bottom:22px}
 .foot-grid p,.foot-grid a{font-size:14px;color:var(--muted)}
 .foot-grid h4{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;font-family:'IBM Plex Mono',monospace}
 .foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
@@ -195,11 +197,34 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg2);padding:70px 
   .hero-pillars{grid-template-columns:1fr}
   .svc{grid-template-columns:1fr}
 }
+@media(max-width:980px){
+  :root{--navh:96px}
+  .nav-in{height:96px;padding:0 20px}
+  .nav-logo img{height:72px}
+}
 @media(max-width:600px){
-  section{padding:80px 0}
+  :root{--navh:88px}
+  .wrap{padding:0 20px}
+  section{padding:64px 0}
+  .nav-in{height:88px}
+  .nav-logo img{height:64px}
+  .hero{padding:110px 0 60px}
+  .hero h1{font-size:clamp(40px,11.5vw,64px)}
+  .page-hero{padding:120px 0 44px}
+  .page-hero h1{font-size:clamp(32px,9vw,48px)}
+  h2{font-size:clamp(28px,7.5vw,38px)}
+  .hero-ctas .btn{width:100%;justify-content:center}
   .steps,.values,.f-grid{grid-template-columns:1fr}
-  .form-card{padding:28px 22px}
-  .foot-grid{grid-template-columns:1fr}
+  .step::before{right:0}
+  .form-card{padding:26px 20px}
+  .foot-grid{grid-template-columns:1fr;gap:34px}
+  .svc{padding:28px 22px}
+  .svc .btn{width:100%;justify-content:center}
+  .trust{padding:50px 0}
+  .eyebrow{font-size:10.5px;letter-spacing:.2em;gap:8px 10px}
+  .eyebrow::before{width:22px}
+  .lead,.hero .lead{max-width:100%}
+  img,svg,video{max-width:100%}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -415,20 +440,20 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg2);padding:70px 
         <div class="form-card">
           <h3 style="font-size:24px;margin-bottom:6px">Tell us what expertise you need.</h3>
           <p style="color:var(--muted);font-size:14.5px;margin-bottom:30px">We usually respond within one business day.</p>
-          <form data-form>
+          <form data-form data-subject="New expert request — heraklesglobal.com">
             <div class="f-grid">
-              <div><label>Company Name</label><input type="text" required></div>
-              <div><label>Contact Person</label><input type="text" required></div>
-              <div><label>Business Email</label><input type="email" required></div>
-              <div><label>Phone</label><input type="tel"></div>
-              <div class="f-full"><label>Required Expertise</label><input type="text" placeholder="e.g. Intune Engineer, M365 Consultant" required></div>
-              <div><label>Project Start</label><input type="text" placeholder="e.g. ASAP / Q3 2026"></div>
-              <div><label>Project Duration</label><input type="text" placeholder="e.g. 6 months"></div>
-              <div class="f-full"><label>Work Mode</label><select><option>Remote</option><option>On-Site</option><option>Hybrid</option></select></div>
-              <div class="f-full"><label>Project Description</label><textarea placeholder="Environment, tasks, team size, special requirements …"></textarea></div>
+              <div><label>Company Name</label><input type="text" name="company" required></div>
+              <div><label>Contact Person</label><input type="text" name="contact_person" required></div>
+              <div><label>Business Email</label><input type="email" name="email" required></div>
+              <div><label>Phone</label><input type="tel" name="phone"></div>
+              <div class="f-full"><label>Required Expertise</label><input type="text" placeholder="e.g. Intune Engineer, M365 Consultant" name="required_expertise" required></div>
+              <div><label>Project Start</label><input type="text" placeholder="e.g. ASAP / Q3 2026" name="project_start"></div>
+              <div><label>Project Duration</label><input type="text" placeholder="e.g. 6 months" name="project_duration"></div>
+              <div class="f-full"><label>Work Mode</label><select name="work_mode"><option>Remote</option><option>On-Site</option><option>Hybrid</option></select></div>
+              <div class="f-full"><label>Project Description</label><textarea name="message" placeholder="Environment, tasks, team size, special requirements …"></textarea></div>
               <div class="f-full"><button type="submit" class="btn btn-solid" style="width:100%;justify-content:center">Request an IT Expert <span class="arr">→</span></button></div>
             </div>
-          </form>
+          <div class="form-err">Your message could not be sent. Please try again or email us directly at contact@heraklesglobal.com.</div></form>
           <div class="success"><div class="ok-ring">✓</div><h3>Request received.</h3><p>Thank you. We will review your requirements and get back to you shortly with matching profiles or a follow-up question.</p></div>
         </div>
       </div>
@@ -450,20 +475,20 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg2);padding:70px 
       <div class="form-card rev" style="width:100%">
         <h3 style="font-size:24px;margin-bottom:6px">Join our Expert Network</h3>
         <p style="color:var(--muted);font-size:14.5px;margin-bottom:30px">Your data is treated confidentially and only used for project matching.</p>
-        <form data-form>
+        <form data-form data-subject="New expert application — heraklesglobal.com">
           <div class="f-grid">
-            <div><label>Full Name</label><input type="text" required></div>
-            <div><label>Email</label><input type="email" required></div>
-            <div><label>Phone</label><input type="tel"></div>
-            <div><label>Location</label><input type="text" placeholder="City, Country"></div>
-            <div class="f-full"><label>Primary Expertise</label><input type="text" placeholder="e.g. Azure, Intune, M365, Networking" required></div>
-            <div><label>Years of Experience</label><input type="number" min="0"></div>
-            <div><label>Availability</label><input type="text" placeholder="e.g. from August 2026"></div>
-            <div class="f-full"><label>Work Preference</label><select><option>Remote</option><option>On-Site</option><option>Hybrid</option></select></div>
-            <div class="f-full"><label>CV Upload (PDF)</label><input type="file" accept=".pdf,.doc,.docx" style="padding:11px 16px"></div>
+            <div><label>Full Name</label><input type="text" name="name" required></div>
+            <div><label>Email</label><input type="email" name="email" required></div>
+            <div><label>Phone</label><input type="tel" name="phone"></div>
+            <div><label>Location</label><input type="text" placeholder="City, Country" name="location"></div>
+            <div class="f-full"><label>Primary Expertise</label><input type="text" placeholder="e.g. Azure, Intune, M365, Networking" name="primary_expertise" required></div>
+            <div><label>Years of Experience</label><input type="number" min="0" name="years_experience"></div>
+            <div><label>Availability</label><input type="text" placeholder="e.g. from August 2026" name="availability"></div>
+            <div class="f-full"><label>Work Preference</label><select name="work_preference"><option>Remote</option><option>On-Site</option><option>Hybrid</option></select></div>
+            <div class="f-full"><label>CV Upload (PDF)</label><input type="file" name="attachment" accept=".pdf,.doc,.docx" style="padding:11px 16px"></div>
             <div class="f-full"><button type="submit" class="btn btn-solid" style="width:100%;justify-content:center">Join our Expert Network <span class="arr">→</span></button></div>
           </div>
-        </form>
+        <div class="form-err">Your message could not be sent. Please try again or email us directly at contact@heraklesglobal.com.</div></form>
         <div class="success"><div class="ok-ring">✓</div><h3>Profile submitted.</h3><p>Thank you. We will review your profile and contact you when a matching project comes up.</p></div>
       </div>
     </div>
@@ -508,17 +533,17 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg2);padding:70px 
     <div class="wrap split">
       <div class="rev">
         <div class="form-card" style="max-width:none">
-          <form data-form>
+          <form data-form data-subject="New contact inquiry — heraklesglobal.com">
             <div class="f-grid">
-              <div><label>Name</label><input type="text" required></div>
-              <div><label>Company</label><input type="text"></div>
-              <div><label>Email</label><input type="email" required></div>
-              <div><label>Phone</label><input type="tel"></div>
-              <div class="f-full"><label>Topic</label><select><option>IT Project / Services</option><option>IT Expert Request</option><option>Expert Application</option><option>General Inquiry</option></select></div>
-              <div class="f-full"><label>Message</label><textarea required></textarea></div>
+              <div><label>Name</label><input type="text" name="name" required></div>
+              <div><label>Company</label><input type="text" name="company"></div>
+              <div><label>Email</label><input type="email" name="email" required></div>
+              <div><label>Phone</label><input type="tel" name="phone"></div>
+              <div class="f-full"><label>Topic</label><select name="topic"><option>IT Project / Services</option><option>IT Expert Request</option><option>Expert Application</option><option>General Inquiry</option></select></div>
+              <div class="f-full"><label>Message</label><textarea name="message" required></textarea></div>
               <div class="f-full"><button type="submit" class="btn btn-solid" style="width:100%;justify-content:center">Send message <span class="arr">→</span></button></div>
             </div>
-          </form>
+          <div class="form-err">Your message could not be sent. Please try again or email us directly at contact@heraklesglobal.com.</div></form>
           <div class="success"><div class="ok-ring">✓</div><h3>Message sent.</h3><p>Thank you for reaching out. We will get back to you as soon as possible.</p></div>
         </div>
       </div>
@@ -653,7 +678,12 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg2);padding:70px 
 
   document.addEventListener('click',function(e){
     var a=e.target.closest('a[data-page]');
-    if(a){ if(location.hash==='#'+a.dataset.page){e.preventDefault();show(a.dataset.page);} }
+    if(a){
+      e.preventDefault();
+      var id=a.dataset.page;
+      try{history.replaceState(null,'','#'+id);}catch(err){}
+      show(id);
+    }
   });
 
   burger.addEventListener('click',function(){mmenu.classList.toggle('open')});
@@ -673,12 +703,29 @@ footer{border-top:1px solid var(--line-soft);background:var(--bg2);padding:70px 
   }
 
   /* forms */
+  var FORM_ENDPOINT='https://formsubmit.co/ajax/contact@heraklesglobal.com';
   document.querySelectorAll('form[data-form]').forEach(function(f){
     f.addEventListener('submit',function(e){
       e.preventDefault();
-      f.style.display='none';
-      var s=f.parentElement.querySelector('.success');
-      if(s){s.style.display='block';}
+      var btn=f.querySelector('button[type="submit"]');
+      var err=f.querySelector('.form-err');
+      if(err)err.style.display='none';
+      var label=btn.innerHTML;
+      btn.disabled=true;btn.innerHTML='Sending …';
+      var fd=new FormData(f);
+      fd.append('_subject',f.dataset.subject||'Website inquiry — heraklesglobal.com');
+      fd.append('_template','table');
+      fetch(FORM_ENDPOINT,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+        .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+        .then(function(){
+          f.style.display='none';
+          var s=f.parentElement.querySelector('.success');
+          if(s){s.style.display='block';}
+        })
+        .catch(function(){
+          btn.disabled=false;btn.innerHTML=label;
+          if(err)err.style.display='block';
+        });
     });
   });
 
